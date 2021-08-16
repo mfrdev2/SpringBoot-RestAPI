@@ -52,13 +52,12 @@ public class CourseServiceImp implements CourseService{
     }
 
     @Override
-    public Course deleteCourse(long courseId) {
+    public void deleteCourse(long courseId) {
         Course course;
         for(Course c: list){
             if(c.getId() == courseId){
                 list.remove(c);
             }
         }
-        return null;
     }
 }
