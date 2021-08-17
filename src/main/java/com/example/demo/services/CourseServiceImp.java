@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class CourseServiceImp implements CourseService{
  //   private List<Course> list;
@@ -35,8 +37,11 @@ public class CourseServiceImp implements CourseService{
             }
         }
         return course;*/
-        return courseDao.getOne(courseId);
-
+     Optional<Course> course = courseDao.findById(courseId);
+     if(course.isPresent()){
+        return course.get();
+     }
+        return null;
     }
 
     @Override
@@ -70,7 +75,7 @@ public class CourseServiceImp implements CourseService{
                 list.remove(c);
             }
         }*/
-        Course entity = courseDao.getOne(courseId);
+        Course entity = courseDao.getById(courseId);
         courseDao.delete(entity);
     }
 }
